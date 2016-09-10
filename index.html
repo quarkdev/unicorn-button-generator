@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Unicorn Button Generator</title>
+		<link rel="stylesheet" type="text/css" href="dependencies/semantic-ui/semantic.min.css">
+		<link rel="stylesheet" type="text/css" href="dependencies/unicorn-buttons/buttons.min.css">
+		<link rel="stylesheet" type="text/css" href="dependencies/font-awesome/font-awesome.min.css">
+		<style type="text/css">
+			.advance-setting {
+				display: none;
+			}
+			
+			#more-options {
+				display: inline-block;
+				margin-bottom: 16px;
+				cursor: pointer;
+			}
+			
+			#more-options:hover {
+				font-weight: bold;
+			}
+		</style>
+		<script src="dependencies/jquery/jquery-3.0.0.min.js"></script>
+		<script src="dependencies/semantic-ui/semantic.min.js"></script>
+		<script src="dependencies/clipboard-js/clipboard.min.js"></script>
+	</head>
+	<body>
+		<div class="ui center aligned grid">
+			<div class="ui raised segments four wide column" style="min-width: 318px">
+				<div class="ui segment">
+					<form class="ui form">
+						<div class="field">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="type">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Button Type</div>
+							  <div class="menu">
+								<div class="item" data-value="input">Input</div>
+								<div class="item" data-value="button">Button</div>
+								<div class="item" data-value="link">Link</div>
+							  </div>
+							</div>
+						</div>
+					
+						<div class="field">
+							<input type="text" class="btn-txt" name="text" placeholder="Button Text">
+						</div>
+						
+						<div class="field">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="theme">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Theme</div>
+							  <div class="menu">
+								<div class="item" data-value="3d">3D</div>
+								<div class="item" data-value="raised">Raised</div>
+								<div class="item" data-value="flat">Flat</div>
+								<div class="item" data-value="plain">Plain</div>
+							  </div>
+							</div>
+						</div>
+						
+						<div class="field">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="color">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Color</div>
+							  <div class="menu">
+								<div class="item" data-value="neutral">Grey</div>
+								<div class="item" data-value="primary">Blue</div>
+								<div class="item" data-value="action">Green</div>
+								<div class="item" data-value="highlight">Orange</div>
+								<div class="item" data-value="caution">Red</div>
+								<div class="item" data-value="royal">Purple</div>
+							  </div>
+							</div>
+						</div>
+						
+						<div class="field">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="shape">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Shape</div>
+							  <div class="menu">
+								<div class="item" data-value="rectangle">Rectangle</div>
+								<div class="item" data-value="rounded">Rounded</div>
+								<div class="item" data-value="pill">Pill</div>
+								<div class="item" data-value="square">Square</div>
+								<div class="item" data-value="box">Box</div>
+								<div class="item" data-value="circle">Circle</div>
+							  </div>
+							</div>
+						</div>
+						
+						<div class="ui divider"></div>
+						
+						<span id="more-options" onclick="toggleOptions(this)" data-state="closed"><i class="angle down icon"></i> More Options</span>
+						
+						<div class="field advance-setting">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="size">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Size</div>
+							  <div class="menu">
+								<div class="item" data-value="giant">Giant</div>
+								<div class="item" data-value="jumbo">Jumbo</div>
+								<div class="item" data-value="large">Large</div>
+								<div class="item" data-value="medium">Medium</div>
+								<div class="item" data-value="small">Small</div>
+								<div class="item" data-value="tiny">Tiny</div>
+							  </div>
+							</div>
+						</div>
+						
+						<div class="field advance-setting">
+							<div class="ui search selection dropdown">
+							  <input type="hidden" name="icon">
+							  <i class="dropdown icon"></i>
+							  <span class="default text">Icon</span>
+							  <div class="menu">
+								<div class="scrolling menu">
+									<div class="divider"></div>
+									<div class="item" data-value="no-icon">
+									  No Icon
+									</div>
+									<div class="item" data-value="attention">
+									  <i class="attention icon"></i>
+									  Important
+									</div>
+									<div class="item" data-value="comment">
+									  <i class="comment icon"></i>
+									  Announcement
+									</div>
+									<div class="item" data-value="conversation">
+									  <i class="conversation icon"></i>
+									  Discussion
+									</div>
+								</div>
+							  </div>
+							</div>
+						</div>
+						
+						<div class="field advance-setting">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="border">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Border</div>
+							  <div class="menu">
+								<div class="item" data-value="borderless">Borderless</div>
+								<div class="item" data-value="bordered">Bordered</div>
+							  </div>
+							</div>
+						</div>
+						
+						<div class="field advance-setting">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="longshadow">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Longshadow</div>
+							  <div class="menu">
+								<div class="item" data-value="no-longshadow">No Longshadow</div>
+								<div class="item" data-value="longshadow-right">Right Longshadow</div>
+								<div class="item" data-value="longshadow-left">Left Longshadow</div>
+								<div class="item" data-value="longshadow-right longshadow-expand">Expanded Right Longshadow</div>
+								<div class="item" data-value="longshadow-left longshadow-expand">Expanded Left Longshadow</div>
+							  </div>
+							</div>
+						</div>
+						
+						<div class="field advance-setting">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="glow">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Glow</div>
+							  <div class="menu">
+								<div class="item" data-value="no-glow">No Glow</div>
+								<div class="item" data-value="glow">Glowing</div>
+							  </div>
+							</div>
+						</div>
+						
+						<div class="field advance-setting">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="width">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Width</div>
+							  <div class="menu">
+								<div class="item" data-value="compact">Compact</div>
+								<div class="item" data-value="block">Full-Width</div>
+							  </div>
+							</div>
+						</div>
+						
+						<div class="field advance-setting">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="wrapper">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Wrapper</div>
+							  <div class="menu">
+								<div class="item" data-value="no-wrap">Unwrapped</div>
+								<div class="item" data-value="wrap">Wrapped</div>
+							  </div>
+							</div>
+						</div>
+						
+						<div class="field advance-setting">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="typography">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Typography</div>
+							  <div class="menu">
+								<div class="item" data-value="no-typography">Normal Case</div>
+								<div class="item" data-value="uppercase">Uppercase</div>
+								<div class="item" data-value="lowercase">Lowercase</div>
+								<div class="item" data-value="capitalize">Capitalize</div>
+								<div class="item" data-value="small-caps">Small Caps</div>
+							  </div>
+							</div>
+						</div>
+						
+						<div class="field advance-setting">
+							<input type="text" class="btn-txt" name="namespace" placeholder="Namespace">
+						</div>
+					</form>
+				</div>
+				<div class="ui segment">
+					<h5>BUTTON PREVIEW</h5>
+					<div id="button-container"></div>
+					<div class="ui divider"></div>
+					<div class="ui mini action input">
+					  <input type="text" value="" placeholder="Full HTML" id="buttonhtml">
+					  <button class="ui mini green right labeled icon button clipbtn popbtn" data-clipboard-target="#buttonhtml" data-content="Button HTML Copied!" data-variation="mini inverted" data-position="top center">
+						<i class="copy icon"></i>
+						Copy
+					  </button>
+					</div>
+					<br><br>
+					<div class="ui mini action input">
+					  <input type="text" value="" placeholder="Class Only" id="buttonclass">
+					  <button class="ui mini right labeled icon button clipbtn popbtn" data-clipboard-target="#buttonclass" data-content="Button Classes Copied!" data-variation="mini inverted" data-position="top center">
+						<i class="copy icon"></i>
+						Copy
+					  </button>
+					</div>
+				</div>	
+			</div>
+		</div>
+		
+		<div style="text-align: center; margin-top: 28px; color: grey;">
+			<a href="" target="_blank"><i class="github icon"></i> Unicorn Button Generator v1.0</a><br>
+			<span>github.com/quarkdev</span>
+		</div>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('.ui.dropdown')
+				  .dropdown({
+					onChange: function() {
+						generateButton();
+					}
+				  })
+				;
+				$('.ui.button.toggle').state();
+				$('.btn-txt').on('change input', function() {
+					generateButton();
+				});
+				$('.ui.popbtn')
+				  .popup({
+					on: 'click'
+				  })
+				;
+				new Clipboard('.clipbtn');
+			});
+			
+			var UBNS = 'button'; // unicorn button namespace
+			var btn_container = document.getElementById('button-container');
+			var btn_html_infield = document.getElementById('buttonhtml');
+			var btn_class_infield = document.getElementById('buttonclass');
+			var advs_fields = document.getElementsByClassName('advance-setting'); // advanced setting fields
+
+			function generateButton() {			
+				var text = document.getElementsByName('text')[0].value;
+				var namespace = document.getElementsByName('namespace')[0].value;
+				var type = document.getElementsByName('type')[0].value;
+				var size = document.getElementsByName('size')[0].value;
+				var icon = document.getElementsByName('icon')[0].value;
+				var theme = document.getElementsByName('theme')[0].value;
+				var color = document.getElementsByName('color')[0].value;
+				var shape = document.getElementsByName('shape')[0].value;
+				var border = document.getElementsByName('border')[0].value;
+				var longshadow = document.getElementsByName('longshadow')[0].value;
+				var glow = document.getElementsByName('glow')[0].value;
+				var width = document.getElementsByName('width')[0].value;
+				var wrapper = document.getElementsByName('wrapper')[0].value;
+				var typography = document.getElementsByName('typography')[0].value;
+
+				if (namespace == '') {
+					namespace = 'button';
+				}
+				
+				var _start = '', _class = namespace, _end = '';
+				
+				if (text == '') {
+					text = 'button';
+				}
+				
+				if (type == '') {
+					type = 'button';
+				}
+				
+				var icon_html = '';
+				if (icon !== '' && icon !== 'no-icon') {
+					icon_html = '<i class="' + icon + ' icon"></i> ';
+				}
+				
+				switch(type) {
+					case 'link':
+						_start = '<a href="" target="_blank" class="';
+						_end = '">'+ icon_html + text +'</a>';
+						break;
+					case 'button':
+						_start = '<button type="button" class="';
+						_end = '">'+ icon_html + text +'</button>';
+						break;
+					case 'input':
+						_start = '<input type="button" value="'+ icon_html + text +'" class="';
+						_end = '"/>';
+						break;
+					default:
+						break;
+				}
+				
+				var prefix = ' ' + namespace + '-';
+				
+				if (size !== '' && size !== 'medium') { _class += prefix + size; }
+				if (theme !== '' && theme !== 'flat') { _class += prefix + theme; }
+				if (color !== '' && color !== 'neutral') { _class += prefix + color; }
+				if (shape !== '' && shape !== 'rectangle') { _class += prefix + shape; }
+				if (border !== '' && border !== 'bordered') { _class += prefix + border; }
+				
+				if (longshadow !== '' && longshadow !== 'no-longshadow') {
+					_longshadow = longshadow.split(' ');
+					_class += prefix + _longshadow[0];
+					if (_longshadow.length > 1) {
+						_class += prefix + _longshadow[1];
+					}
+				}
+				
+				if (glow !== '' && glow !== 'no-glow') { _class += prefix + glow; }
+				if (width !== '' && width !== 'compact') { _class += prefix + width; }
+				
+				if (wrapper !== '' && wrapper !== 'no-wrap') {
+					switch(wrapper) {
+						case 'wrap':
+							_start = '<span class="button-wrap">' + _start;
+							_end += '</span>';
+							break;
+						case 'no-wrap':
+						default:
+							break;
+						
+					}
+				}
+				
+				if (typography !== '' && typography !== 'no-typography') { _class += prefix + typography; }
+				
+				var btn_html = _start + _class + _end;
+				
+				btn_container.innerHTML = btn_html;
+				btn_html_infield.value = btn_html;
+				btn_class_infield.value = _class;
+				
+			}
+			
+			function toggleOptions(t) {
+				if (t.dataset.state == 'closed') {
+					for (var i = 0, l = advs_fields.length; i < l; i++) {
+						advs_fields[i].style.display = 'block';
+					}
+					t.dataset.state = 'open';
+					t.innerHTML = '<i class="angle up icon"></i> Less Options';
+				}
+				else {
+					for (var i = 0, l = advs_fields.length; i < l; i++) {
+						advs_fields[i].style.display = 'none';
+					}
+					t.dataset.state = 'closed';
+					t.innerHTML = '<i class="angle down icon"></i> More Options';
+				}
+			}
+		</script>
+	</body>
+</html>
