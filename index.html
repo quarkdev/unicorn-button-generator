@@ -41,6 +41,22 @@
 							  </div>
 							</div>
 						</div>
+						
+						<div class="field url-field">
+							<input type="text" class="btn-txt" name="url" placeholder="Button URL">
+						</div>
+						
+						<div class="field url-field">
+							<div class="ui selection dropdown">
+							  <input type="hidden" name="target">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">Open URL in...</div>
+							  <div class="menu">
+								<div class="item" data-value="_blank">New Tab</div>
+								<div class="item" data-value="_self">Current Tab</div>
+							  </div>
+							</div>
+						</div>
 					
 						<div class="field">
 							<input type="text" class="btn-txt" name="text" placeholder="Button Text">
@@ -270,6 +286,7 @@
 				  })
 				;
 				new Clipboard('.clipbtn');
+				generateButton();
 			});
 			
 			var UBNS = 'button'; // unicorn button namespace
@@ -278,7 +295,9 @@
 			var btn_class_infield = document.getElementById('buttonclass');
 			var advs_fields = document.getElementsByClassName('advance-setting'); // advanced setting fields
 
-			function generateButton() {			
+			function generateButton() {		
+				var url = document.getElementsByName('url')[0].value;
+				var target = document.getElementsByName('target')[0].value;
 				var text = document.getElementsByName('text')[0].value;
 				var namespace = document.getElementsByName('namespace')[0].value;
 				var type = document.getElementsByName('type')[0].value;
@@ -300,6 +319,19 @@
 				
 				var _start = '', _class = namespace, _end = '';
 				
+				if (type !== 'link') {
+					document.getElementsByClassName('url-field')[0].style.display = 'none';
+					document.getElementsByClassName('url-field')[1].style.display = 'none';
+				}
+				else {
+					document.getElementsByClassName('url-field')[0].style.display = 'block';
+					document.getElementsByClassName('url-field')[1].style.display = 'block';
+				}
+				
+				if (target == '') {
+					target = '_blank';
+				}
+				
 				if (text == '') {
 					text = 'button';
 				}
@@ -315,7 +347,7 @@
 				
 				switch(type) {
 					case 'link':
-						_start = '<a href="" target="_blank" class="';
+						_start = '<a href="'+ url +'" target="'+ target +'" class="';
 						_end = '">'+ icon_html + text +'</a>';
 						break;
 					case 'button':
