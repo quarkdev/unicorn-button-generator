@@ -19,6 +19,10 @@
 			#more-options:hover {
 				font-weight: bold;
 			}
+			
+			i.icon {
+				margin: 0 !important;
+			}
 		</style>
 		<script src="dependencies/jquery/jquery-3.0.0.min.js"></script>
 		<script src="dependencies/semantic-ui/semantic.min.js"></script>
@@ -59,7 +63,7 @@
 						</div>
 					
 						<div class="field">
-							<input type="text" class="btn-txt" name="text" placeholder="Button Text">
+							<input type="text" class="btn-txt" name="text" value="button text" placeholder="Button Text">
 						</div>
 						
 						<div class="field">
@@ -332,17 +336,13 @@
 					target = '_blank';
 				}
 				
-				if (text == '') {
-					text = 'button';
-				}
-				
 				if (type == '') {
 					type = 'button';
 				}
 				
 				var icon_html = '';
 				if (icon !== '' && icon !== 'no-icon') {
-					icon_html = '<i class="' + icon + ' icon"></i> ';
+					icon_html = '<i class="' + icon + ' icon"></i>';
 				}
 				
 				switch(type) {
