@@ -4,7 +4,7 @@
 		<title>Unicorn Button Generator</title>
 		<link rel="stylesheet" type="text/css" href="dependencies/semantic-ui/semantic.min.css">
 		<link rel="stylesheet" type="text/css" href="dependencies/unicorn-buttons/buttons.min.css">
-		<link rel="stylesheet" type="text/css" href="dependencies/font-awesome/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="dependencies/font-awesome/css/font-awesome.min.css">
 		<style type="text/css">
 			.advance-setting {
 				display: none;
@@ -22,6 +22,16 @@
 			
 			i.icon {
 				margin: 0 !important;
+			}
+			
+			.dd-it {
+				position: absolute;
+				left: 45px;
+			}
+			
+			.scrolling .dd-it {
+				position: absolute;
+				left: 60px;
 			}
 		</style>
 		<script src="dependencies/jquery/jquery-3.0.0.min.js"></script>
@@ -137,26 +147,25 @@
 							  <input type="hidden" name="icon">
 							  <i class="dropdown icon"></i>
 							  <span class="default text">Icon</span>
-							  <div class="menu">
 								<div class="scrolling menu">
 									<div class="divider"></div>
-									<div class="item" data-value="no-icon">
-									  No Icon
-									</div>
-									<div class="item" data-value="attention">
-									  <i class="attention icon"></i>
-									  Important
-									</div>
-									<div class="item" data-value="comment">
-									  <i class="comment icon"></i>
-									  Announcement
-									</div>
-									<div class="item" data-value="conversation">
-									  <i class="conversation icon"></i>
-									  Discussion
-									</div>
+									<div class="item" data-value="no-icon">No Icon</div>
+									<div class="item" data-value="amazon"><i class="fa fa-amazon"></i><span class="dd-it">Amazon</span></div>
+									<div class="item" data-value="shopping-cart"><i class="fa fa-shopping-cart"></i><span class="dd-it">Shopping&nbsp;Cart</span></div>
+									<div class="item" data-value="shopping-basket"><i class="fa fa-shopping-basket"></i><span class="dd-it">Shopping&nbsp;Basket</span></div>
+									<div class="item" data-value="shopping-bag"><i class="fa fa-shopping-bag"></i><span class="dd-it">Shopping&nbsp;Bag</span></div>
+									<div class="item" data-value="send"><i class="fa fa-send"></i><span class="dd-it">Send</span></div>
+									<div class="item" data-value="sign-in"><i class="fa fa-sign-in"></i><span class="dd-it">Sign-in</span></div>
+									<div class="item" data-value="sign-out"><i class="fa fa-sign-out"></i><span class="dd-it">Sign-out</span></div>
+									<div class="item" data-value="remove"><i class="fa fa-remove"></i><span class="dd-it">Remove</span></div>
+									<div class="item" data-value="check"><i class="fa fa-check"></i><span class="dd-it">Check</span></div>
+									<div class="item" data-value="arrow-right"><i class="fa fa-arrow-right"></i><span class="dd-it">Arrow&nbsp;Right</span></div>
+									<div class="item" data-value="arrow-circle-right"><i class="fa fa-arrow-circle-right"></i><span class="dd-it">Arrow&nbsp;Circle&nbsp;Right</span></div>
+									<div class="item" data-value="chevron-right"><i class="fa fa-chevron-right"></i><span class="dd-it">Chevron&nbsp;Right</span></div>
+									<div class="item" data-value="chevron-circle-right"><i class="fa fa-chevron-right"></i><span class="dd-it">Chevron&nbsp;Circle&nbsp;Right</span></div>
+									<div class="item" data-value="hand-o-right"><i class="fa fa-hand-o-right"></i><span class="dd-it">Hand Pointer Right</span></div>
+									<div class="item" data-value="credit-card"><i class="fa fa-credit-card"></i><span class="dd-it">Credit&nbsp;Card</span></div>
 								</div>
-							  </div>
 							</div>
 						</div>
 						
@@ -342,7 +351,7 @@
 				
 				var icon_html = '';
 				if (icon !== '' && icon !== 'no-icon') {
-					icon_html = '<i class="' + icon + ' icon"></i>';
+					icon_html = '<i class="fa fa-' + icon + '" aria-hidden="true"></i>';
 				}
 				
 				switch(type) {
